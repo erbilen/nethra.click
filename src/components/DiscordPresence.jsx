@@ -41,7 +41,7 @@ const DiscordPresence = ({ userId }) => {
         }
 
         fetchDiscordData()
-        const interval = setInterval(fetchDiscordData, 1500)
+        const interval = setInterval(fetchDiscordData, 10 * 1000)
         return () => clearInterval(interval)
     }, [userId])
 
@@ -151,6 +151,7 @@ const DiscordPresence = ({ userId }) => {
 
 
 export default DiscordPresence
+
 
 
 
