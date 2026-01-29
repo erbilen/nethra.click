@@ -46,7 +46,7 @@ const DiscordPresence = ({ userId }) => {
     }, [userId])
 
     if (loading) return <div className="discord-card"><div className="discord-card-content" style={{ color: 'white', justifyContent: 'center' }}>Yükleniyor...</div></div>
-    if (!discordData.discord_user) return <div className="discord-card"><div className="discord-card-content" style={{ color: '#ed4245', justifyContent: 'center' }}>Discord Verisi Yok</div></div>
+    if (!discordData || !discordData.discord_user) return <div className="discord-card"><div className="discord-card-content" style={{ color: '#ed4245', justifyContent: 'center' }}>Discord Verisi Yok</div></div>
 
     const { discord_user, discord_status, activities = [] } = discordData
 
