@@ -231,3 +231,11 @@ video {
     }
 }
 
+/* … tüm mevcut CSS’in … */
+
+/* EN ALT – MOBİL NAV FIX */
+@media (max-width: 480px) {
+    nav {
+        width: 180px !important;
+    }
+}
