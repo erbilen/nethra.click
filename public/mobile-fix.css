@@ -161,3 +161,9 @@ video {
         display: none;
     }
 }
+
+/* SOCIAL BUTTON TEXT KAPAT */
+.social-link::after {
+    content: none !important;
+    display: none !important;
+}
