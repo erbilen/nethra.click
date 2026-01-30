@@ -3,6 +3,7 @@ body {
     overflow-x: hidden;
 }
 
+/* MOBİLDE CURSOR & HOVER KAPAT */
 @media (hover: none) and (pointer: coarse) {
     * {
         cursor: auto;
@@ -21,14 +22,26 @@ body {
     }
 }
 
-
+/* BACKGROUND VIDEO – MOBİL UYUMLU */
 video {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/* MOBİL PERFORMANS FIX */
+@media (max-width: 768px) {
+    * {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
 
+    video {
+        opacity: 0.35; /* istersen 0.25–0.5 arası oynayabilirsin */
+    }
+}
+
+/* GLOW TEMİZLEME (SADECE GLOW SINIFLARI) */
 .glow,
 .neon,
 .shadow,
@@ -39,43 +52,13 @@ video {
     text-shadow: none;
 }
 
-@media (max-width: 768px) {
-
-    * {
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-
-        box-shadow: none !important;
-        text-shadow: none !important;
-        filter: none !important;
-
-        animation: none !important;
-        transition: none !important;
-
-        -webkit-tap-highlight-color: transparent !important;
-    }
-
-    *::before,
-    *::after {
-        box-shadow: none !important;
-        filter: none !important;
-        text-shadow: none !important;
-    }
-
-    video {
-        opacity: 0.35;
-    }
-
-    *:hover {
-        transform: none !important;
-    }
-}
-
-
+/* MOBİL GENEL YAPI */
 @media (max-width: 480px) {
 
     * {
         max-width: 100vw;
+        animation: none;
+        transition: none;
     }
 
     div,
@@ -84,7 +67,7 @@ video {
         overflow-x: hidden;
     }
 
-
+    /* NAVBAR */
     nav,
     header,
     .nav,
@@ -94,28 +77,21 @@ video {
         top: 12px;
         left: 50%;
         transform: translateX(-50%);
-
-        width: 180px;              /* ← SON & NET */
+        width: fit-content;
         max-width: 90vw;
-
         padding: 8px 10px;
         display: flex;
-        justify-content: space-between;
         gap: 10px;
-
         z-index: 9999;
     }
 
     nav a,
     nav button {
-        flex: 1;
-        text-align: center;
-        margin: 0;
-        padding: 8px 0;
         white-space: nowrap;
         transform: none;
     }
 
+    /* SOCIAL & BUTTONS */
     .social-links,
     .buttons,
     .actions {
@@ -132,19 +108,19 @@ video {
         min-height: 48px;
         transform: none;
     }
-    
+
+    /* SOCIAL LINK FINAL */
     .social-link {
         width: 100%;
         max-width: 340px;
         height: 64px;
         margin: 0 auto;
-
         border-radius: 18px;
         padding: 0 20px;
 
         display: flex;
         align-items: center;
-        justify-content: center;
+        gap: 16px;
 
         box-shadow: none;
     }
@@ -156,13 +132,17 @@ video {
         flex-shrink: 0;
     }
 
-
     .social-link::after {
-        content: none !important;
-        display: none !important;
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
     }
 
+    .social-link.instagram::after { content: "Instagram"; }
+    .social-link.tiktok::after { content: "TikTok"; }
+    .social-link.spotify::after { content: "Spotify"; }
 
+    /* AVATAR & STATUS */
     img,
     .avatar,
     .profile-avatar,
@@ -171,8 +151,6 @@ video {
     .profile-image {
         box-shadow: none;
         filter: none;
-        border: none;
-        outline: none;
     }
 
     .online-indicator,
@@ -184,6 +162,89 @@ video {
     }
 }
 
+/* SOCIAL BUTTON TEXT KAPAT */
+.social-link::after {
+    content: none !important;
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+
+    /* GLOW – NEON – PARLAKLIK */
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+        filter: none !important;
+    }
+
+    /* BEFORE / AFTER GLOW’LAR */
+    *::before,
+    *::after {
+        box-shadow: none !important;
+        filter: none !important;
+        text-shadow: none !important;
+    }
+
+    /* BLUR & CAM EFEKTLERİ */
+    * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* PARLAK ANİMASYONLAR */
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* HOVER PARLAKLIKLARI */
+    *:hover {
+        box-shadow: none !important;
+        filter: none !important;
+        transform: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* NAV SABİT GENİŞLİK */
+    nav,
+    .nav,
+    .navbar,
+    .top-nav {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+
+        width: 220px !important;   /* ← KRİTİK */
+        max-width: 90vw !important;
+
+        justify-content: space-between !important;
+    }
+
+    /* NAV BUTONLARI EŞİT */
+    nav a,
+    nav button {
+        flex: 1 !important;
+        text-align: center !important;
+        margin: 0 !important;
+        padding: 8px 0 !important;
+    }
+}
+
+/* … tüm mevcut CSS’in … */
+
+/* EN ALT – MOBİL NAV FIX */
+@media (max-width: 480px) {
+    nav {
+        width: 180px !important;
+    }
+}
+
+/* ===============================
+   PROFIL KARTI – BEYAZ HALKA FIX
+   =============================== */
+
+/* Border / Shadow / Filter temizliği */
 .profile-card,
 .profile,
 .profile-container,
@@ -199,6 +260,14 @@ video {
     filter: none !important;
 }
 
+/* iOS Safari tap highlight kaldır */
+@media (max-width: 768px) {
+    * {
+        -webkit-tap-highlight-color: transparent !important;
+    }
+}
+
+/* Pseudo-element (before / after) kaynaklı halka */
 .profile-card::before,
 .profile-card::after,
 .avatar::before,
