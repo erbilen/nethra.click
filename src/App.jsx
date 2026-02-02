@@ -133,7 +133,7 @@ function App() {
                     <footer className="footer">
                         <p>
                             <a 
-                                href="https://discord.com/users/669612175186329661" 
+                                href="https://reawen.xyz" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
@@ -153,3 +153,4 @@ function App() {
 
 
 export default App
+
