@@ -1,14 +1,12 @@
 import { useState } from 'react'
 
-
 const ProfileCard = () => {
     const [views] = useState(653)
-
 
     const profile = {
         name: 'nethra',
         bio: 'herbokolog',
-        avatar: 'https://cdn.discordapp.com/avatars/669612175186329661/89882f4b930c835154259df87b227211.png?size=256', // Sabit veya yerel bir resim kullanabilirsin
+        avatar: 'https://cdn.discordapp.com/avatars/669612175186329661/89882f4b930c835154259df87b227211.png?size=256',
         status: 'online'
     }
 
@@ -23,11 +21,9 @@ const ProfileCard = () => {
             <div className="profile-card">
                 <div className="card-glow"></div>
 
-
                 <div className="avatar-container">
-                    <div className="avatar-ring">
-                        <div className="avatar-ring-inner"></div>
-                    </div>
+
+                    
                     <div className="avatar">
                         <img
                             src={profile.avatar}
@@ -53,7 +49,6 @@ const ProfileCard = () => {
                     <p className="bio-text">{profile.bio}</p>
                 </div>
 
-
                 <a
                     href="https://discord.gg/your-server"
                     target="_blank"
@@ -63,7 +58,6 @@ const ProfileCard = () => {
                     <i className="fab fa-discord"></i>
                     <span>Discord Sunucumuza Katıl</span>
                 </a>
-
 
                 <div className="social-links">
                     {socialLinks.map((link, index) => (
@@ -81,7 +75,6 @@ const ProfileCard = () => {
                         </a>
                     ))}
                 </div>
-
 
                 <div className="views-counter">
                     <i className="fas fa-eye"></i>
