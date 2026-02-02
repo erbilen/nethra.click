@@ -21,11 +21,21 @@ const TeamPage = () => {
                 <DiscordPresence userId="760954029462782044" />
             </div>
 
-            <footer className="footer">
-                <p>© 2026 Reawen Development</p>
-            </footer>
+                    <footer className="footer">
+                        <p>
+                            <a 
+                                href="https://discord.com/users/669612175186329661" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+                            >
+                                © nethra
+                            </a>
+                        </p>
+                    </footer>
         </>
     )
 }
+
 
 export default TeamPage
