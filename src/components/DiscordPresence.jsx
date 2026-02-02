@@ -66,14 +66,16 @@ const DiscordPresence = ({ userId }) => {
 
 
 
-    const getUserBadges = () => {
-        const badges = []
+const getUserBadges = () => {
+    const badges = []
 
-        if (discord_user.nitro) badges.push('nitro')
-        if (discord_user.booster) badges.push('booster')
-
-        return badges
+    if (discord_user.booster) {
+        badges.push('nitro')  
+        badges.push('booster') 
     }
+
+    return badges
+}
 
     const currentActivity = activities.find(a => a.type === 2) || activities.find(a => a.type === 0)
 
@@ -151,6 +153,7 @@ const DiscordPresence = ({ userId }) => {
 
 
 export default DiscordPresence
+
 
 
 
