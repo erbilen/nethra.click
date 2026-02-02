@@ -131,7 +131,16 @@ function App() {
                     </CardsTiltWrapper>
 
                     <footer className="footer">
-                        <p>© nethra</p>
+                        <p>
+                            <a 
+                                href="https://discord.com/users/669612175186329661" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+                            >
+                                © nethra
+                            </a>
+                        </p>
                     </footer>
                 </div>
                 <div className={`page-content team-section ${showTeam ? 'active' : ''}`}>
@@ -144,9 +153,3 @@ function App() {
 
 
 export default App
-
-
-
-
-
-
