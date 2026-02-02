@@ -6,7 +6,7 @@ import DiscordPresence from './components/DiscordPresence'
 import CardsTiltWrapper from './components/CardsTiltWrapper'
 import SplashScreen from './components/SplashScreen'
 import TeamPage from './components/TeamPage'
-import videoFile from './assets/copy_F8A4A87B-C5EF-487A-8301-4D1C11ACA2AF.mov'
+import videoFile from './assets/video2.mp4'
 
 import CustomCursor from './components/CustomCursor'
 
@@ -144,6 +144,7 @@ function App() {
 
 
 export default App
+
 
 
 
