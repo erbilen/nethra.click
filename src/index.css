@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap');
 
 
 :root {
@@ -28,7 +28,7 @@
     --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     --shadow-glow: 0 0 60px rgba(60, 60, 60, 0.3);
 
-    --font-main: 'Righteous', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-main: 'Lexend Deca', sans-serif;
 
     --transition-fast: 0.15s ease;
     --transition-normal: 0.3s ease;
