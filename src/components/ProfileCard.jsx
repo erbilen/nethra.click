@@ -50,7 +50,7 @@ const ProfileCard = () => {
                 </div>
 
                 <a
-                    href="https://discord.gg/your-server"
+                    href="https://discord.gg/onlyfam"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="discord-banner"
@@ -86,3 +86,4 @@ const ProfileCard = () => {
 }
 
 export default ProfileCard
+
