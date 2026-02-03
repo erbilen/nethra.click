@@ -152,7 +152,70 @@ const getUserBadges = () => {
 }
 
 
+/* Önce parlama animasyonunu tanımlayalım */
+@keyframes shineEffect {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* 1. İsim Kısmı (nethra) için Parlama Efekti */
+.name-text {
+  /* Gümüş/Beyaz parlaklık tonları */
+  background: linear-gradient(
+    to right, 
+    #ffffff 20%, 
+    #a8a8a8 40%, 
+    #ffffff 60%, 
+    #ffffff 80%
+  );
+  background-size: 200% auto;
+  
+  /* Arka planı metne kırpıyoruz */
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* Metnin içini şeffaf yapıyoruz ki arkadaki renk görünsün */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  /* Animasyonu başlatıyoruz */
+  animation: shineEffect 3s linear infinite;
+  
+  /* İsim biraz daha kalın olursa efekt daha iyi görünür */
+  font-weight: 700; 
+  /* İsteğe bağlı: Hafif bir dış parıltı (glow) */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* 2. Discord Buton Yazısı için Parlama Efekti */
+.discord-banner span {
+  /* Discord mavisi üzerinde beyazın parlaması */
+  background: linear-gradient(
+    to right, 
+    #ffffff 0%, 
+    #ffd700 50%, /* Buraya hafif altın sarısı ekledim, çok dikkat çeker */
+    #ffffff 100%
+  );
+  /* Alternatif: Sadece beyaz parlama istersen üstteki yerine bunu kullan:
+     background: linear-gradient(to right, #fff 0%, #ccc 50%, #fff 100%); 
+  */
+  
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  animation: shineEffect 2.5s linear infinite reverse; /* Ters yöne aksın */
+  font-weight: 600;
+}
+
 export default DiscordPresence
+
 
 
 
