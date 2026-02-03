@@ -914,6 +914,7 @@ body {
     color: #ffffff;
     line-height: 1.5;
     padding: 5px 0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .discord-badges {
@@ -970,10 +971,12 @@ body {
 
 .discord-badge-nitro {
     background-image: url('https://github.com/mezotv/discord-badges/raw/main/assets/discordnitro.svg');
+    filter: drop-shadow(0 0 4px rgba(88, 101, 242, 0.8));
 }
 
 .discord-badge-booster {
     background-image: url('https://github.com/mezotv/discord-badges/raw/main/assets/boosts/discordboost9.svg');
+    filter: drop-shadow(0 0 4px rgba(244, 127, 255, 0.8));
 }
 
 
@@ -1109,12 +1112,13 @@ body {
     font-weight: 600;
     font-size: 16px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.3);
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.5), 0 0 30px rgba(88, 101, 242, 0.2);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .discord-banner:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(88, 101, 242, 0.5);
+    box-shadow: 0 0 25px rgba(88, 101, 242, 0.8), 0 0 50px rgba(88, 101, 242, 0.4);
 }
 
 .discord-banner i {
