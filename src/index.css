@@ -998,18 +998,34 @@ body {
 .discord-playing {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.6),
+        0 0 16px rgba(255, 255, 255, 0.4),
+        0 0 24px rgba(255, 255, 255, 0.2);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
 }
 
 .discord-time {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.5);
+    text-shadow:
+        0 0 6px rgba(255, 255, 255, 0.4),
+        0 0 12px rgba(255, 255, 255, 0.2);
+    background: none;
 }
 
 .discord-status-label {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.6);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.5),
+        0 0 16px rgba(255, 255, 255, 0.3),
+        0 0 24px rgba(255, 255, 255, 0.15);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
 }
 
 .discord-profile-link {
