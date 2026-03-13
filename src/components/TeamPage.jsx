@@ -19,6 +19,9 @@ const TeamPage = () => {
 
                 {/* loatrex */}
                 <DiscordPresence userId="760954029462782044" />
+
+                {/* serp */}
+                <DiscordPresence userId="1036961149947756565" />
             </div>
 
                     <footer className="footer">
