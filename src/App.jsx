@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import './App.css'
 import Particles from './components/Particles'
 import ProfileCard from './components/ProfileCard'
@@ -6,10 +6,19 @@ import DiscordPresence from './components/DiscordPresence'
 import CardsTiltWrapper from './components/CardsTiltWrapper'
 import SplashScreen from './components/SplashScreen'
 import TeamPage from './components/TeamPage'
-import videoFile from './assets/esdeekid.mp4' 
+
+import video1 from './assets/esdeekid.mp4'
+import video2 from './assets/esdeekid2.mp4'
+import video3 from './assets/lewishamido.mp4'
+import video4 from './assets/vibe.mp4'
+import video5 from './assets/video.mp4'
+import video6 from './assets/video2.mp4'
+import video7 from './assets/video3.mp4'
 
 import CustomCursor from './components/CustomCursor'
 
+const VIDEO_LIST = [video1, video2, video3, video4, video5, video6, video7]
+const FADE_DURATION = 1500 // ms
 
 const MY_DISCORD_ID = "669612175186329661";
 
@@ -19,25 +28,97 @@ function App() {
     const [showTeam, setShowTeam] = useState(false)
     const [volume, setVolume] = useState(0.3)
     const [menuOpen, setMenuOpen] = useState(false)
-    const videoRef = useRef(null)
+
+    // Dual video crossfade system
+    const videoARef = useRef(null)
+    const videoBRef = useRef(null)
+    const currentIndexRef = useRef(0)
+    const activeVideoRef = useRef('A') // 'A' or 'B'
+    const [activeVideo, setActiveVideo] = useState('A') // for CSS class toggling
+
+    const getActiveVideoEl = useCallback(() => {
+        return activeVideoRef.current === 'A' ? videoARef.current : videoBRef.current
+    }, [])
+
+    const getInactiveVideoEl = useCallback(() => {
+        return activeVideoRef.current === 'A' ? videoBRef.current : videoARef.current
+    }, [])
+
+    const playNextVideo = useCallback(() => {
+        // Move to next video index
+        currentIndexRef.current = (currentIndexRef.current + 1) % VIDEO_LIST.length
+
+        const nextVideoEl = getInactiveVideoEl()
+        if (!nextVideoEl) return
+
+        // Load next video into the inactive element
+        nextVideoEl.src = VIDEO_LIST[currentIndexRef.current]
+        nextVideoEl.load()
+
+        nextVideoEl.oncanplay = () => {
+            nextVideoEl.volume = volume
+            nextVideoEl.play().catch(() => {})
+
+            // Swap active
+            const newActive = activeVideoRef.current === 'A' ? 'B' : 'A'
+            activeVideoRef.current = newActive
+            setActiveVideo(newActive)
+
+            nextVideoEl.oncanplay = null
+        }
+    }, [volume, getInactiveVideoEl])
+
+    // Handle video end => crossfade to next
+    useEffect(() => {
+        const videoA = videoARef.current
+        const videoB = videoBRef.current
+        if (!videoA || !videoB) return
+
+        const handleEndedA = () => {
+            if (activeVideoRef.current === 'A') {
+                playNextVideo()
+            }
+        }
+        const handleEndedB = () => {
+            if (activeVideoRef.current === 'B') {
+                playNextVideo()
+            }
+        }
+
+        videoA.addEventListener('ended', handleEndedA)
+        videoB.addEventListener('ended', handleEndedB)
+
+        return () => {
+            videoA.removeEventListener('ended', handleEndedA)
+            videoB.removeEventListener('ended', handleEndedB)
+        }
+    }, [playNextVideo])
 
     const handleEnter = () => {
         setHasEntered(true)
         setIsPlaying(true)
-        if (videoRef.current) {
-            videoRef.current.play().catch(error => {
-                console.log("Video auto-play failed, waiting for user interaction:", error)
+
+        const videoA = videoARef.current
+        if (videoA) {
+            videoA.src = VIDEO_LIST[0]
+            videoA.load()
+            videoA.volume = volume
+            videoA.play().catch(error => {
+                console.log("Video auto-play failed:", error)
                 setIsPlaying(false)
             })
+            activeVideoRef.current = 'A'
+            setActiveVideo('A')
         }
     }
 
     const toggleVideo = () => {
-        if (videoRef.current) {
+        const activeEl = getActiveVideoEl()
+        if (activeEl) {
             if (isPlaying) {
-                videoRef.current.pause()
+                activeEl.pause()
             } else {
-                videoRef.current.play()
+                activeEl.play()
             }
             setIsPlaying(!isPlaying)
         }
@@ -46,25 +127,32 @@ function App() {
     const handleVolumeChange = (e) => {
         const newVolume = parseFloat(e.target.value)
         setVolume(newVolume)
-        if (videoRef.current) {
-            videoRef.current.volume = newVolume
-        }
+        if (videoARef.current) videoARef.current.volume = newVolume
+        if (videoBRef.current) videoBRef.current.volume = newVolume
     }
 
     useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.volume = volume
-        }
-    }, [hasEntered])
+        if (videoARef.current) videoARef.current.volume = volume
+        if (videoBRef.current) videoBRef.current.volume = volume
+    }, [hasEntered, volume])
 
     return (
         <>
             <CustomCursor />
 
             <div className="video-background">
-                <video ref={videoRef} loop playsInline>
-                    <source src={videoFile} type="video/mp4" />
-                </video>
+                <video
+                    ref={videoARef}
+                    className={`bg-video ${activeVideo === 'A' ? 'active' : ''}`}
+                    playsInline
+                    muted={false}
+                />
+                <video
+                    ref={videoBRef}
+                    className={`bg-video ${activeVideo === 'B' ? 'active' : ''}`}
+                    playsInline
+                    muted={false}
+                />
             </div>
 
 
