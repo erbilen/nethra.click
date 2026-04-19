@@ -1,7 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+const VIEWS_API = '/api/views'
 
 const ProfileCard = () => {
-    const [views] = useState(653)
+    const [views, setViews] = useState(null)
+
+    useEffect(() => {
+        const trackView = async () => {
+            try {
+                // Increment view count
+                const res = await fetch(VIEWS_API, { method: 'POST' })
+                if (res.ok) {
+                    const data = await res.json()
+                    setViews(data.views)
+                } else {
+                    // Fallback: just get current count
+                    const getRes = await fetch(VIEWS_API)
+                    if (getRes.ok) {
+                        const data = await getRes.json()
+                        setViews(data.views)
+                    }
+                }
+            } catch (err) {
+                console.log('Views API unavailable:', err)
+                setViews(null)
+            }
+        }
+        trackView()
+    }, [])
 
     const profile = {
         name: 'nethra',
@@ -78,7 +104,9 @@ const ProfileCard = () => {
 
                 <div className="views-counter">
                     <i className="fas fa-eye"></i>
-                    <span className="views-count">{views.toLocaleString()}</span> views
+                    <span className="views-count">
+                        {views !== null ? views.toLocaleString() : '...'}
+                    </span> views
                 </div>
             </div>
         </div>
@@ -86,4 +114,3 @@ const ProfileCard = () => {
 }
 
 export default ProfileCard
-
